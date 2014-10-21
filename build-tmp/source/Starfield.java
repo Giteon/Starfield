@@ -1,10 +1,26 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Starfield extends PApplet {
+
 boolean reset = true;
 int numParticles = 2000;
 boolean lightSpeed = false;
 int count = 0;
  // NormalParticle[aBunch] = new NormalParticle[NUM_PARTS];
  Particle[] aBunch;
- void setup()
+ public void setup()
  {
  	size(900, 900);
 
@@ -19,7 +35,7 @@ int count = 0;
  		aBunch[1] = new OddballParticle();
  	}
  }
- void draw()   
+ public void draw()   
  {   
  	count = (int)(frameCount/100);
  	if(lightSpeed == false)
@@ -54,7 +70,7 @@ class NormalParticle implements Particle
 	{
 			myX = width/2;
 			myY = height/2;
-			mySpeed = Math.random()*2.2+0.4;
+			mySpeed = Math.random()*2.2f+0.4f;
 			myAngle = Math.PI*2*Math.random();
 			myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 		}
@@ -68,7 +84,7 @@ class NormalParticle implements Particle
 		{
 			myX = width/2;
 			myY = height/2;
-			mySpeed = Math.random()*2.2+0.4;
+			mySpeed = Math.random()*2.2f+0.4f;
 			myAngle = Math.PI*2*Math.random();
 			myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 			reset = false;
@@ -96,9 +112,9 @@ class NormalParticle implements Particle
 			myY = (Math.cos(myAngle)*mySpeed)+myY;
 			if(mySpeed > 4)
 			{
-				mySpeed = 0.5;
+				mySpeed = 0.5f;
 			}
-			mySpeed +=.1;
+			mySpeed +=.1f;
 		}
 
 		if(lightSpeed == true)
@@ -107,9 +123,9 @@ class NormalParticle implements Particle
 			myY = (Math.cos(myAngle+mouseX)*mySpeed)+myY;
 			if(mySpeed < -4)
 			{
-				mySpeed = 0.5;
+				mySpeed = 0.5f;
 			}
-			mySpeed -=.1;
+			mySpeed -=.1f;
 		}
 if(keyPressed == true)
 {
@@ -142,7 +158,7 @@ class OddballParticle implements Particle
 		{
 			myX = width/2;
 			myY = height/2;
-			mySpeed = Math.random()*2.2+0.4;
+			mySpeed = Math.random()*2.2f+0.4f;
 			myAngle = Math.PI*2*Math.random();
 			myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
 		}
@@ -155,9 +171,9 @@ class OddballParticle implements Particle
 			myY = (Math.sin(myAngle)*mySpeed)+myY;
 			if(mySpeed > 4)
 			{
-				mySpeed = 0.5;
+				mySpeed = 0.5f;
 			}
-			mySpeed +=.1;
+			mySpeed +=.1f;
 		}
 
 		if(lightSpeed == true)
@@ -166,9 +182,9 @@ class OddballParticle implements Particle
 			myY = (Math.sin(myAngle+mouseX)*mySpeed)+myY;
 			if(mySpeed < -4)
 			{
-				mySpeed = 0.5;
+				mySpeed = 0.5f;
 			}
-			mySpeed -=.1;
+			mySpeed -=.1f;
 		}
 //  if(frameCount%400==0)
 if(keyPressed == true)
@@ -210,7 +226,16 @@ interface Particle
 	public void show();
 }
 
-void mouseClicked()
+public void mouseClicked()
 {
 	lightSpeed = !lightSpeed;
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Starfield" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
