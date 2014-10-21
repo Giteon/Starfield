@@ -6,7 +6,7 @@ int count = 0;
  Particle[] aBunch;
  void setup()
  {
- 	size(900, 900);
+ 	size(1100, 800);
 
  	background(0);
 
