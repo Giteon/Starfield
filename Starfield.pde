@@ -6,7 +6,7 @@ int count = 0;
  Particle[] aBunch;
  void setup()
  {
- 	size(1100, 800);
+ 	size(900, 900);
 
  	background(0);
 
@@ -16,7 +16,7 @@ int count = 0;
  	{
 
  		aBunch[i] = new NormalParticle();
- 		aBunch[1] = new OddballParticle();
+ 		aBunch[1] = new JumboParticle();
  	}
  }
  void draw()   
@@ -44,7 +44,7 @@ class NormalParticle implements Particle
 	double myY;
 	double myAngle;
 	double mySpeed;
-
+int mySize;
 	int myColor;
 
 
@@ -57,6 +57,7 @@ class NormalParticle implements Particle
 			mySpeed = Math.random()*2.2+0.4;
 			myAngle = Math.PI*2*Math.random();
 			myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+			mySize = 5;
 		}
 	}
 
@@ -77,7 +78,7 @@ class NormalParticle implements Particle
 		stroke(myColor);
 		fill(myColor);
 		noFill();
-		ellipse((float)myX,(float)myY,5+randSize,5+randSize);
+		ellipse((float)myX,(float)myY,mySize+randSize,mySize+randSize);
 		// if (myX > width)
 		// {
 		// 	reset = true;
@@ -182,10 +183,6 @@ reset = true;
 }
 
 }
-
-
-
-
 }
 public void show(){
 	int randSize = (int)(Math.random()*3);
@@ -203,12 +200,20 @@ public void show(){
 // 	}
  }
 }
+class JumboParticle extends NormalParticle{
 
+JumboParticle(){
+//mySize = 200;
+
+}
+
+}
 interface Particle
 {
 	public void move();
 	public void show();
 }
+
 
 void mouseClicked()
 {
