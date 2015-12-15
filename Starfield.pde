@@ -1,5 +1,5 @@
 boolean reset = true;
-int numParticles = 2000;
+int numParticles = 4000;
 boolean lightSpeed = false;
 int count = 0;
  // NormalParticle[aBunch] = new NormalParticle[NUM_PARTS];
@@ -105,7 +105,7 @@ int mySize;
 		if(lightSpeed == true)
 		{
 			myX = (Math.sin(myAngle-mouseY)*mySpeed)+myX;
-			myY = (Math.cos(myAngle+mouseX)*mySpeed)+myY;
+			myY = (Math.sin(myAngle+mouseX)*mySpeed)+myY;
 			if(mySpeed < -4)
 			{
 				mySpeed = 0.5;
